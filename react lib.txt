@@ -1,0 +1,43 @@
+1. check the package name
+
+   npm search <lib name>
+
+   no:
+
+2. create-react-library
+
+    Y->
+    N-> npm i -g create-react-library
+
+3. create-react-library <lib name>
+
+4.  open command prompt in root folder > npm start
+
+5.  open command prompt in example folder > npm start
+
+6.  root folder/src :  create your component
+
+7.  root folder/src/index.js  , need to export your component(s)
+
+8.  root folder/example/src/app.js 
+
+    import from root folder and load your component which you want to publish
+
+        import List  from 'my-nit-list' //root folder name
+
+9.  go to https://www.npmjs.com/
+
+     a. create an account
+     b. complete 2FA 
+     c. install 2FA authentactor app in your mobile
+
+9.  run this command in your root folder 
+
+    > npm login
+
+      username
+      password
+      email
+      2FA code ---> can get from 2FA authentacotr app
+
+ 10. npm publish 

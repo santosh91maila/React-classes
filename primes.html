@@ -1,0 +1,66 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+
+    //prepare content using componets
+
+    const App=()=>{
+        const [result,setResult]=React.useState('')
+        const [primeNos,setPrimeNos]=React.useState('')
+        let myRef=React.useRef()
+        
+        const fnClick=()=>{
+            debugger;
+            let primes=[]
+            let no=  myRef.current.value
+            let isPrime=fnCheckPrime(no)
+            setResult(isPrime ? 'Prime' : 'Not Prime')
+            for(var i=1;i<=no;i++){
+                   if(fnCheckPrime(i)){
+                    primes.push(i)
+                   }
+            }
+            setPrimeNos(primes.join())
+
+        }
+        const fnCheckPrime=(no)=>{
+            let factors=0
+            for(var i=1;i<=no;i++){
+                if(no % i==0){
+                    factors++
+                }
+            }
+            if(factors==2){
+               return true
+            }
+            return false
+        }
+        return <div>
+                <p>
+                    <b>No:</b> <input ref={myRef} />
+                </p>
+                <p>
+                    <button onClick={fnClick}>Submit</button>
+                </p>
+                <h3>{result}</h3> 
+                <h1>{primeNos}</h1>
+            </div>
+    }
+   
+    // take container reference
+    var container=ReactDOM.createRoot(document.querySelector('#root'))
+    //render component content inside the container 
+    container.render(<App />)
+
+
+</script>
+
+
+
+

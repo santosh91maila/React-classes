@@ -1,0 +1,47 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+
+    //prepare content using componets
+    const useIncCount=(init)=>{
+        const [count,setCount]=React.useState(init)
+        const fnIncCount=()=>{
+            setCount(count+1)
+        }
+        return [count,fnIncCount]
+    }
+    const ButtonClick=()=>{
+        const [count,fnIncCount]= useIncCount(10)
+        return    <button onClick={fnIncCount}>He Clicked me {count} time(s)</button>
+    }
+    const TextHover =()=>{
+        const [count,fnIncCount]= useIncCount(0)
+        return   <h1 onMouseOver={fnIncCount}>He Hover me {count} time(s)</h1>
+         
+    }
+    const App=()=>{
+       
+       
+        return <div>
+             <ButtonClick />
+             <TextHover />
+            </div>
+    }
+   
+    // take container reference
+    var container=ReactDOM.createRoot(document.querySelector('#root'))
+    //render component content inside the container 
+    container.render(<App />)
+
+
+</script>
+
+
+
+

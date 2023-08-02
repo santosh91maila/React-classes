@@ -1,0 +1,26 @@
+Search: <input onkeyup="betterFn()" />
+<h1>open console and see the code for better understanding</h1>
+
+<script>
+    function fnFetch(){
+        console.log('fetch data');
+    }
+    
+    function fnThrotlling(fn,delay){
+        var _flag=true;
+        var timer;
+        return function(){
+            if(_flag){
+                fn();
+            }
+            _flag=false;
+             clearTimeout(timer);
+             timer=setTimeout(function(){
+                 fn();
+             },delay);
+        }
+    }
+
+    var betterFn=fnThrotlling(fnFetch,300);
+
+</script>

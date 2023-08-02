@@ -1,0 +1,75 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+  
+const ctx=React.createContext()
+
+class D extends React.Component{
+    render(){
+        return <div>
+               <h5>D : {this.context[0]}</h5>
+            </div>
+    }
+}
+
+D.contextType=ctx
+
+class C extends React.Component{
+    render(){
+        return <div>
+               <h4>C : </h4>
+               <D  />
+            </div>
+    }
+}
+class B extends React.Component{
+    render(){
+        return <div>
+               <h3>B : {this.context[1]}</h3>
+               <C />
+            </div>
+    }
+}
+B.contextType=ctx
+
+class A extends React.Component{
+        render(){
+            return <div>
+                <h2>A</h2>
+                <B />
+                </div>
+        }
+    }
+
+    class App extends React.Component{
+        name1='Sachin'
+        name2='Dhoni'
+        render(){
+            return <div>
+                <h1>App</h1>
+                <div><span></span></div>
+                <ctx.Provider value={[this.name1,this.name2]}>
+                    <A />
+                </ctx.Provider>
+            </div>
+        }
+    }
+    
+    
+    // take container reference
+    var container=ReactDOM.createRoot(document.querySelector('#root'))
+    //render component content inside the container 
+    container.render(<App />)
+
+
+</script>
+
+
+
+

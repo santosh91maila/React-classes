@@ -1,0 +1,41 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+
+    const Title=()=>{
+        return <h1>Naresh IT</h1>
+    }
+    //prepare content using componets
+
+    const App=()=>{
+         const callback=(id,phase, actualDuration,baseDuration)=>{
+              console.log(id)
+              console.log(phase)
+              console.log(actualDuration)
+              console.log(baseDuration)
+         }
+         return <div>
+                <h1>Hellow Sachin</h1>
+                <React.Profiler id='title'  onRender={callback}>
+                  <Title />
+                </React.Profiler>
+            </div>
+    }
+    
+    // take container reference
+    var container=ReactDOM.createRoot(document.querySelector('#root'))
+    //render component content inside the container 
+    container.render(<App />)
+
+
+</script>
+
+
+
+

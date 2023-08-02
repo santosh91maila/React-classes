@@ -1,0 +1,94 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+ /*
+    const App=()=>{
+        const [name,setName]=React.useState('xxxx')
+        const [loc,setLoc]=React.useState('xxxx')
+
+        const nameRef=React.useRef()
+        const locRef=React.useRef()
+
+        const fnNameChnage=()=>{
+           let name=nameRef.current.value
+           setName(name)
+        }
+        const fnLocChange=()=>{
+            let loc=locRef.current.value
+            setLoc(loc)
+        }
+         return <div>
+                
+                <p><input ref={nameRef} /><button onClick={fnNameChnage}>Name Change</button></p>
+                <p><input ref={locRef} /><button  onClick={fnLocChange}>Location Change</button></p>
+                <h3>Name is : {name} , Location is {loc}.</h3>
+            </div>
+    }
+
+*/
+
+const App=()=>{
+        const init={
+            name:'',
+            loc:''
+        }
+
+        const myReducer=(state,action)=>{
+               switch(action.type){
+                case 'NAME':
+                    return {
+                        ...state,
+                        name:action.payload
+                    }
+                case 'LOC':
+                    return {
+                        ...state,
+                        loc:action.payload
+                    }
+               }
+            return state
+        }
+
+       const [state,dispatch]= React.useReducer(myReducer,init)
+
+        const nameRef=React.useRef()
+        const locRef=React.useRef()
+
+        const fnNameChnage=()=>{
+           let name=nameRef.current.value
+           dispatch({
+             type:'NAME',
+             payload:name
+           })
+        }
+        const fnLocChange=()=>{
+            let loc=locRef.current.value
+            dispatch({
+             type:'LOC',
+             payload:loc
+           })
+        }
+         return <div>
+                
+                <p><input ref={nameRef} /><button onClick={fnNameChnage}>Name Change</button></p>
+                <p><input ref={locRef} /><button  onClick={fnLocChange}>Location Change</button></p>
+                <h3>Name is : {state.name} , Location is {state.loc}.</h3>
+            </div>
+    }
+    // take container reference
+    var container=ReactDOM.createRoot(document.querySelector('#root'))
+    //render component content inside the container 
+    container.render(<App />)
+
+
+</script>
+
+
+
+

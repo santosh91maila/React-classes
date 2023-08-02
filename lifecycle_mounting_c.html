@@ -1,0 +1,44 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+
+   class App extends React.Component{
+    state={
+        name:'Sachin'
+    }
+    constructor(){
+        super();
+        console.log('con')
+    }
+
+    render(){
+        console.log('render')
+        return <div>
+                Hellow {this.state.name}
+            </div>
+    }
+    static getDerivedStateFromProps(){
+        console.log('getDerivedStateFromProps')
+    }
+    componentDidMount(){
+        console.log('componentDidMount')
+    }
+   }
+    
+    // take container reference
+    var container=ReactDOM.createRoot(document.querySelector('#root'))
+    //render component content inside the container 
+    container.render(<App />)
+
+
+</script>
+
+
+
+

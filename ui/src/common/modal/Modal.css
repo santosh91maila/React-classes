@@ -1,0 +1,12 @@
+.modal-div{
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 500px;
+    background: white;
+    height: 200px;
+    border: 2px solid yellow;
+    border-radius: 20px;
+}

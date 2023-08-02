@@ -1,0 +1,49 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+
+    //prepare content using componets
+    
+    const A =(props)=>{
+        return <div>
+              <h3>A : {props.data}</h3>
+            </div>
+    }
+
+
+    const App=()=>{
+        const [name,setName]=React.useState('')
+        const nameRef=React.useRef()
+
+        const fnClick=()=>{
+           setName(nameRef.current.value)
+        }
+        return <div>
+               <h1>App</h1>
+               <p>
+                  Name:<input ref={nameRef} />
+               </p>
+               <p>
+                 <button onClick={fnClick}>send data to A component</button>
+               </p>
+               <A  data={name} />
+            </div>
+    }
+    
+    // take container reference
+    var container=ReactDOM.createRoot(document.querySelector('#root'))
+    //render component content inside the container 
+    container.render(<App />)
+
+
+</script>
+
+
+
+

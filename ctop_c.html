@@ -1,0 +1,62 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+
+    //prepare content using componets
+    class A extends React.Component{
+        nameRef=React.createRef()
+        fnClick=()=>{
+           let name= this.nameRef.current.value
+           this.props.cb(name)
+        }
+        render(){
+            return <div>
+              <h3>A</h3>
+              <p>
+                  Name:<input ref={this.nameRef} />
+              </p>
+              <p>
+                <button onClick={this.fnClick}>pass data to App</button>
+              </p>
+            </div>
+        }
+    }
+    
+
+    class App extends React.Component{
+         state={
+            name:'No Yet Received'
+         }
+         f1=(data)=>{
+            this.setState({
+                name:data
+            })
+         }
+         render(){
+            return <div>
+               <h1>App : {this.state.name} </h1>
+              
+               <A cb={this.f1} />
+
+            </div>
+         }
+    }
+
+    
+    // take container reference
+    var container=ReactDOM.createRoot(document.querySelector('#root'))
+    //render component content inside the container 
+    container.render(<App />)
+
+
+</script>
+
+
+
+

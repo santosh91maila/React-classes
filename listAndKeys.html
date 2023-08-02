@@ -1,0 +1,46 @@
+<script src="react.development.js"></script>
+<script src="babel.min.js"></script>
+<script src="react-dom.development.js"></script>
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+
+    const App=()=>{
+        const players=['Sachin','Dhoni','Kohli','UV']
+        return <div>
+              <h1>Ordered List</h1>
+              <ol>
+                {
+                    players.map((v)=>{
+                        return <li>{v}</li>
+                    })
+                }
+              </ol>
+              <h1>Dropdown</h1>
+              <select>
+                 {
+                    players.map((v)=>{
+                        return <option>{v}</option>
+                    })
+                 }
+              </select>
+
+              <h1>Players </h1> 
+              {
+                players.map((v)=>{
+                    return <p>{v}</p>
+                })
+              }
+            </div>
+    }
+    
+    const root=ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+</script>
+
+
+
+
+

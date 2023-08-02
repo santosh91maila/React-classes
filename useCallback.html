@@ -1,0 +1,51 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+    const Title=React.memo(()=>{
+        console.log('Title');
+        return <h1>E1</h1>
+    })
+    const Text=React.memo(({lbl, data})=>{
+        console.log('Text ' + lbl)
+        return <h1>{lbl}: {data}</h1>
+    })
+    const Button=React.memo(({lbl,fn})=>{
+        console.log('button '+lbl)
+        return <button onClick={fn}>{lbl}</button>
+    })
+    //prepare content using componets
+    const App=()=>{
+        const [age,setAge]=React.useState(20)
+        const [sal,setSal]=React.useState(20000)
+        const incAge=React.useCallback(()=>{
+            setAge(age+1)
+        },[age])
+        const incSal=React.useCallback(()=>{
+            setSal(sal+1000)
+        },[sal])
+        return <div>
+               <Title />
+               <Text lbl="Age" data={age} />
+               <Button fn={incAge}   lbl="Inc Age" />
+               <Text lbl="Salary" data={sal} />
+               <Button fn={incSal} lbl="Inc Sal" />
+            </div>
+    }
+    
+    // take container reference
+    var container=ReactDOM.createRoot(document.querySelector('#root'))
+    //render component content inside the container 
+    container.render(<App />)
+
+
+</script>
+
+
+
+

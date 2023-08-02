@@ -1,0 +1,66 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+    class App extends React.Component{
+        state={
+            name:'Sachin',
+            count:0
+        }
+        constructor(){
+            super();
+            console.log('con executed')
+        }
+        static getDerivedStateFromProps(){
+            console.log('getDerivedStateFromProps')
+        }
+        componentDidMount(){
+            console.log('componentDidMount')
+        }
+        fnNameChange=()=>{
+            this.setState({
+                name:'Dhoni'
+            })
+        }
+        fnIncrement(){
+            this.setState({
+                count:this.state.count+1
+            })
+        }
+        render(){
+            console.log('render')
+            const {name,count}=this.state
+           return <div>
+            <h1>Hellow {name}</h1>
+            <button onClick={this.fnNameChange}>Name Change</button>
+            <h1>{count}</h1>
+            <button onClick={()=>this.fnIncrement()}>Count Increment</button>
+            </div>
+        }
+        componentDidUpdate(){
+            console.log('componentDidUpdate')
+        }
+        getSnapshotBeforeUpdate(){
+            console.log('getSnapshotBeforeUpdate')
+        }
+        shouldComponentUpdate(){
+            return true
+        }
+    }
+
+    // take container reference
+    var container=ReactDOM.createRoot(document.querySelector('#root'))
+    //render component content inside the container 
+    container.render(<App />)
+
+
+</script>
+
+
+
+

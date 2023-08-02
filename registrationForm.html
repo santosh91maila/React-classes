@@ -1,0 +1,154 @@
+<script src="react.development.js"></script>
+<script src="babel.min.js"></script>
+<script src="react-dom.development.js"></script>
+<link rel="stylesheet" href="bootstrap.css"  >
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+     const Select=({data})=>{
+        const {l,options}=data
+        return <div className="row mb-3">
+                         <div className="col-sm-5 text-end">
+                            <b>{l}:</b>
+                         </div>
+                         <div className="col-sm-3">
+                            <select className="form-control">
+                                 {
+                                    options.map((v,i)=>{
+                                        return <option>{v}</option>
+                                    })
+                                 }
+                            </select>
+                        </div>
+                      </div>
+    }
+    const TextArea=({data})=>{
+        const {l}=data
+        return  <div className="row mb-3">
+                         <div className="col-sm-5 text-end">
+                            <b>{l}:</b>
+                         </div>
+                         <div className="col-sm-3">
+                             <textarea className="form-control"></textarea>
+                        </div>
+                      </div>
+    }
+    const Input=({data})=>{
+        const {l,type,options,name}=data
+        let inputControl=''
+                switch(type){
+                    case  'text':
+                    case  'password':
+                    case  'number':
+                    inputControl=<input className="form-control" type={type} />
+                    break;
+                    case 'radio':
+                        inputControl=<div>
+                            {
+                            options.map((v)=>{
+                                return <React.Fragment><input className="ms-3 me-2"  name={name} type={type} />{v}</React.Fragment>
+                            })
+                          }
+                        </div>
+                    break;
+                    case 'checkbox':
+                        inputControl=<div>
+                            {
+                            options.map((v)=>{
+                                return <React.Fragment><input className="ms-3 me-2"   type={type} />{v}</React.Fragment>
+                            })
+                          }
+                        </div>
+                    break;
+                }
+
+        return  <div className="row mb-3">
+                         <div className="col-sm-5 text-end">
+                            <b>{l}:</b>
+                         </div>
+                         <div className="col-sm-3">
+                              {inputControl}
+                        </div>
+                        <div className="col-sm-4">
+                             <b className="text-danger">Please Enter Valid value</b>
+                        </div>
+                      </div>
+    }
+
+    const App=()=>{
+        const inputControlsData=[
+            {
+                l:'User Name',
+                type:'text',
+                tag:'input'
+            },
+            {
+                l:'Password',
+                type:'password',
+                tag:'input'
+            },
+            {
+                l:'Age',
+                type:'number',
+                tag:'input'
+            },
+            {
+                l:'Gender',
+                type:'radio',
+                tag:'input',
+                name:'gen',
+                options:['Male','Female']
+            },
+            {
+                l:'Hobbies',
+                type:'checkbox',
+                tag:'input',
+                options:['Cricket','Hockey','FootBall']
+            },
+            {
+                l:'Country',
+                tag:'select',
+                options:['India','Pak', 'China']
+            },
+            {
+                l:'Address',
+                tag:'textarea'
+            }
+        ]
+        return <div>
+                <h1 className='text-center bg-primary text-white pt-3 pb-3 mb-4'>Register</h1>
+                <div className="container-fluid">
+                      {
+                        inputControlsData.map((obj,index)=>{
+                            switch(obj.tag){
+                                case 'textarea':
+                                    return  <TextArea data={obj} />
+                                case 'input':
+                                    return  <Input data={obj} />
+                                case 'select':
+                                    return  <Select  data={obj} />
+                            }
+                           
+                        })
+                      }
+
+                      <div className="row">
+                          <div className="offset-sm-5 col-sm-7">
+                              <button className="btn btn-primary">Register</button>
+                          </div>
+                      </div>
+                     
+                </div>
+            </div>
+    }
+    
+    const root=ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+</script>
+
+
+
+
+

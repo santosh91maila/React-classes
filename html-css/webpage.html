@@ -1,0 +1,47 @@
+<style>
+    body{
+        margin:0
+    }
+    #header{
+        text-align: center;
+        background: yellow;
+        font-size: 65px;
+        font-weight: bold;
+    }
+    .menu{
+        margin: 0;
+        list-style-type: none;
+        background: #e3e3d8;
+        line-height: 50px;
+        text-align: right;
+        position: sticky;
+    top: 0;
+    }
+    .menu > li{
+        display: inline;
+        margin: 15px;
+        font-size: 20px;
+        font-weight: bold;
+        font-style: italic;
+        cursor: pointer;
+    }
+    .menu+div{
+        height: 1000px;
+    }
+    div:nth-child(4){
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        background: yellow;
+        font-size: 20px;
+    }
+</style>
+<div id="header">My First WebPage</div>
+<ul class="menu">
+    <li>Home</li>
+    <li>About</li>
+    <li>Contact</li>
+</ul>
+<div>content</div>
+<div>&copy; rights belongs to me.</div>

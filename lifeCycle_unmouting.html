@@ -1,0 +1,42 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+
+    const MyComponent=()=>{
+        React.useEffect(()=>{
+             return ()=>{
+                alert('I am going to unmount')
+             }
+        },[])
+        return <h1>MY component</h1>
+    }
+
+    const App=()=>{
+        const [isShow,setIsShow]=React.useState(true)
+        const fnClick=()=>{
+            setIsShow(!isShow)
+        }
+        return <div>
+               <h1>App</h1> 
+               {isShow && <MyComponent />}
+               <button onClick={fnClick}>click</button>
+            </div>
+    }
+    
+    // take container reference
+    var container=ReactDOM.createRoot(document.querySelector('#root'))
+    //render component content inside the container 
+    container.render(<App />)
+
+
+</script>
+
+
+
+

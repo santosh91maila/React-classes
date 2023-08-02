@@ -1,0 +1,44 @@
+<script src="react.development.js"></script>
+<script src="babel.min.js"></script>
+<script src="react-dom.development.js"></script>
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+  
+    const App=()=>{
+        const [players,setPlayers]=React.useState([])
+        const nameRef=React.useRef()
+        const fnClick=()=>{
+           const name= nameRef.current.value;
+           if(players.includes(name)){
+             alert('Name already existed in the lsit')
+             return 
+           }
+           setPlayers([...players,name])
+           nameRef.current.value=''
+        }
+        return <div>
+                <p>
+                    <b>Name:</b><input ref={nameRef} /> 
+                </p>
+                <p>
+                    <button onClick={fnClick}>submit</button>
+                </p>
+               {
+                players.map((v)=>{
+                    return <p>{v}</p>
+                })
+               }
+            </div>
+    }
+    
+    const root=ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+</script>
+
+
+
+
+

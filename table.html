@@ -1,0 +1,83 @@
+<script src="react.development.js"></script>
+<script src="babel.min.js"></script>
+<script src="react-dom.development.js"></script>
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+
+    const App=()=>{
+        const data=[
+           {
+                name:'Sachin',
+                loc:"Mumbai"
+            },
+            {
+                name:'Dhoni',
+                loc:"Ranchi"
+            },
+            {
+                name:'Kohli',
+                loc:"Delhi"
+            },
+            {
+                name:'uv',
+                loc:"Punjab"
+            }
+        ]
+        const [rowData,setRowData]=React.useState({})
+        const fnView=(row)=>{
+            setRowData(row)
+        }
+        
+        return <div>
+                <table border="1px">
+                    <thead>
+                        <tr>
+                            <th>Player Name</th> 
+                            <th>Location</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            data.map((obj,i)=>{
+                                return <tr>
+                                        <td>{obj.name}</td> 
+                                        <td>{obj['loc']} </td>
+                                        <td><button>Edit</button></td> 
+                                        <td><button>Delete</button></td>
+                                        <td><button onClick={()=>fnView(obj)}>View</button></td>
+                                    </tr>
+                            })
+                        }
+                    </tbody>
+                </table>
+
+                <table border='1px'>
+                    <tbody>
+                        {
+                            Object.keys(rowData).map((key)=>{
+                                    return  <tr>
+                                        <td>{key}</td>
+                                        <td>{rowData[key]}</td>
+                                    </tr>
+                            })
+                        }
+                        
+                    </tbody>
+                </table>
+             </div>
+    }
+    
+    const root=ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+</script>
+
+
+
+
+

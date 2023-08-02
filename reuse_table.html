@@ -1,0 +1,79 @@
+<script src="react.development.js"></script>
+<script src="babel.min.js"></script>
+<script src="react-dom.development.js"></script>
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+   
+   const Table=({headings,data})=>{
+       return <table border="1px">
+            <thead>
+                 <tr>
+                    {
+                        headings.map((v,i)=>{
+                            return <th>{v}</th>
+                        })
+                    }
+                 </tr>
+            </thead>
+            <tbody>
+                 {
+                    data.map((obj)=>{
+                        return <tr>
+                           {
+                            Object.keys(obj).map((k)=>{
+                                return <td>{obj[k]}</td>
+                            })
+                           }
+                        </tr>
+                    })
+                 }
+            </tbody>
+        </table>
+   }
+
+    const App=()=>{
+        const studentsData=[
+            {
+                n:'s1',
+                m:100
+            },
+            {
+                n:'s3',
+                m:90
+            },
+            {
+                n:'s2',
+                m:88
+            }
+        ]
+        const playersData=[
+            {
+                n:'Sachin',
+                r:20000,
+                l:'Mumbai'
+            },
+            {
+                n:'Dhoni',
+                r:10000,
+                l:'Ranchi'
+            }
+        ]
+        return <div>
+                <h1>Players</h1> 
+                  <Table data={playersData}  headings={['Name','Runs',"Location"]} />
+                <h1>Students</h1>
+                  <Table data={studentsData} headings={['Student Name','Marks']}/>
+            </div>
+    }
+    
+    const root=ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+</script>
+
+
+
+
+

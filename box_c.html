@@ -1,0 +1,44 @@
+<script src="react.development.js"></script>
+<script src="babel.min.js"></script>
+<script src="react-dom.development.js"></script>
+
+<style>
+   .box{
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    display: inline-block;
+    text-align: center;
+    line-height: 100px;
+   }
+</style>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+    //props,context,refs,updater,isReactCompoentn,setState,forceUPdate
+
+    class Box extends React.Component{
+        render(){
+            return <div className="box">{this.props.val}</div>
+        }
+    }
+
+   
+    class App extends React.Component{
+        render(){
+            return <div>
+                <div>
+                    <Box val="1" /><Box val="2" />
+                </div>
+                <div>
+                    <Box val="3" /><Box val="4" />
+                </div>
+            </div>
+        }
+    }
+
+    var root=ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<App />)
+</script>

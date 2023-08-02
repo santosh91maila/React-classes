@@ -1,0 +1,39 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+   
+    const App=()=>{
+        const [count,setCount]=React.useState(0)
+        const fnClick=()=>{
+            // setCount(c=>c+1)
+            for(let i=0;i<5;i++){
+                setCount((c)=>{
+                    return c+1
+                })
+                // setCount(count+1)
+            }
+            
+        }
+        return <div>
+               <h1>Count:{count}</h1>
+               <button onClick={fnClick}>click</button>
+            </div>
+    }
+    
+    // take container reference
+    var container=ReactDOM.createRoot(document.querySelector('#root'))
+    //render component content inside the container 
+    container.render(<App />)
+
+
+</script>
+
+
+
+

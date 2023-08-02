@@ -1,0 +1,45 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+   
+    const App=()=>{
+        const [count,setCount]=React.useState(0)
+        const [name,setName]=React.useState('Sachin')
+        const fnInc=()=>{
+            setCount(count+1)
+        }
+        const fnCheck=React.useMemo(()=>{
+           for(let i=0;i<=10000000000;i++){}
+           console.log('1k')
+           return count % 2==0 ? 'Even' : 'ODD'
+        },[count])
+        const fnToggle=()=>{
+            setName(name=='Sachin' ? 'Dhoni':'Sachin')
+        }
+        return <div>
+                  <h1>{count}</h1>
+                  <button onClick={fnInc}>Inc Count</button>
+                  <h3>{fnCheck}</h3>
+                  <h4>{name}</h4>
+                  <button onClick={fnToggle}>Toggle</button>
+            </div>
+    }
+    
+    // take container reference
+    var container=ReactDOM.createRoot(document.querySelector('#root'))
+    //render component content inside the container 
+    container.render(<App />)
+
+
+
+</script>
+
+
+
+
